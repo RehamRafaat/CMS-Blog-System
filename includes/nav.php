@@ -25,8 +25,15 @@
                             echo "<li><a href='category.php?category=$cat_id'>{$cat_title}</a></li>";
                         }
                     ?>
-                    
+                    <?php
+                    if(isset($_SESSION['user_id']))
+                    {
+                        
+                    ?>
                     <li><a href="admin">Admin</a></li>
+                    <?php 
+                    }
+                    ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
