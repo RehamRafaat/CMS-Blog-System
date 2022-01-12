@@ -13,10 +13,19 @@
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
+               <h1 class="page-header">
+                    Page Heading
+                    <small>Secondary Text</small>
+                </h1>
               
                <?php
-                    $posts_count = 0;
-                    $query = "select * from posts where post_status = 'published'";
+    
+                    if(isset($_GET['category']))
+                    {
+                        $post_category_id = $_GET['category'];
+                    }
+                    $posts_counter = 0;
+                    $query = "select * from posts where post_category_id = $post_category_id and post_status = 'published'";
                     $select = mysqli_query($conn, $query);
                     while($row = mysqli_fetch_assoc($select))
                     {
@@ -27,8 +36,7 @@
                         $post_content = substr($row['post_content'],0,50);
                         $post_tags = $row['post_tags'];
                         $post_image = $row['post_image'];
-                        $post_status = $row['post_status'];
-                            
+                        
                 ?>
                
 
@@ -50,12 +58,12 @@
 
 
                                 
-                <?php
-                    $posts_count = $posts_count + 1;
+                <?php  
+                    $posts_counter = $posts_counter + 1;
                     }
-                    if($posts_count == 0)
+                    if($posts_counter == 0)
                     {
-                        echo "<h1 class='text-center'>No posts to be shown</h1>";
+                        echo "<h1>No posts to be shown</h1>";
                     }
                 ?>
                 

@@ -33,7 +33,17 @@
                                         echo "<td>{$post_id}</td>";
                                         echo "<td>{$post_auther}</td>";
                                         echo "<td>{$post_title}</td>";
-                                        echo "<td>{$post_category}</td>";
+                                        
+                                        $query2 = "select * from categories where cat_id = {$post_category}";
+                                        $select_category = mysqli_query($conn,$query2);
+                                        confirm_query($select_category);
+                                        while($row = mysqli_fetch_assoc($select_category))
+                                        {
+                                            $cat_id = $row['cat_id']; 
+                                            $cat_title = $row['cat_title'];
+                                            echo "<td>{$cat_title}</td>";
+                                        }
+                                        
                                         echo "<td>{$post_content}</td>";
                                         echo "<td>{$post_status}</td>";
                                         echo "<td><img class='img-responsive' width='100' src='../images/posts/{$post_image}'></td>";
@@ -52,10 +62,8 @@
                                         $the_post_id = $_GET['delete'];
                                         $que = "delete from posts where post_id = {$the_post_id}";
                                         $res = mysqli_query($conn,$que);
-                                        if(confirm_query($res))
-                                        {
-                                            header("Location: posts.php");
-                                        }
+                                        header("Location: posts.php");
+                                        
                                     }
                                 ?>
                             </tbody>
