@@ -22,6 +22,7 @@
         
         $res = mysqli_query($conn,$query);
         confirm_query($res);
+        header("Location: posts.php");
     }
 ?>
  <form action="" method="post" enctype="multipart/form-data">

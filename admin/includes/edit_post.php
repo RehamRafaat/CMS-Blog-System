@@ -41,7 +41,7 @@
             $res = mysqli_query($conn,$que);
             while($row = mysqli_fetch_assoc($res))
             {
-                $post_image = $row['post_image'];
+                $edited_post_image = $row['post_image'];
             }
         }
         $query3 = "update posts set
@@ -57,6 +57,7 @@
         
         $update_post_by_id = mysqli_query($conn,$query3);
         confirm_query($update_post_by_id);
+        header("Location: posts.php");
     }      
 ?>
  <form action="" method="post" enctype="multipart/form-data">
